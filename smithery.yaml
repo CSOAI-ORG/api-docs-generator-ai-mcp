@@ -1,0 +1,10 @@
+name: api-docs-generator-ai-mcp
+description: "MEOK AI Labs — api-docs-generator-ai-mcp — Generate API documentation from code."
+vendor: MEOK AI Labs
+homepage: https://meok.ai
+repository: https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp
+license: MIT
+categories: [Documentation, Developer Tools]
+tags: [api-documentation, openapi, swagger, api-reference, developer-docs]
+runtime: python
+entrypoint: server.py
