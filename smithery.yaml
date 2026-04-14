@@ -1,10 +1,64 @@
 name: api-docs-generator-ai-mcp
-description: "MEOK AI Labs — api-docs-generator-ai-mcp — Generate API documentation from code."
-vendor: MEOK AI Labs
-homepage: https://meok.ai
-repository: https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp
-license: MIT
-categories: [Documentation, Developer Tools]
-tags: [api-documentation, openapi, swagger, api-reference, developer-docs]
-runtime: python
-entrypoint: server.py
+description: "api-docs-generator-ai-mcp \u2014 Generate API documentation from code."
+version: 1.0.0
+tools:
+- name: generate_endpoint
+  description: Generate an OpenAPI endpoint definition from a description.
+  parameters:
+  - name: path
+    type: string
+    required: true
+  - name: method
+    type: string
+    required: true
+  - name: summary
+    type: string
+    required: true
+  - name: request_body
+    type: string
+    required: false
+  - name: response_description
+    type: string
+    required: false
+- name: generate_schema
+  description: 'Generate an OpenAPI schema component. Fields format: ''name:type,name2:type2''
+    (types: string,integer,number,boolean,array).'
+  parameters:
+  - name: name
+    type: string
+    required: true
+  - name: fields
+    type: string
+    required: true
+- name: generate_full_spec
+  description: Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON
+    array of {path, method, summary} objects.
+  parameters:
+  - name: title
+    type: string
+    required: true
+  - name: description
+    type: string
+    required: true
+  - name: version
+    type: string
+    required: false
+  - name: endpoints_json
+    type: string
+    required: false
+- name: add_auth_to_spec
+  description: 'Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key,
+    basic, oauth2.'
+  parameters:
+  - name: spec_json
+    type: string
+    required: true
+  - name: auth_type
+    type: string
+    required: false
+- name: validate_spec
+  description: Validate an OpenAPI spec for common issues.
+  parameters:
+  - name: spec_json
+    type: string
+    required: true

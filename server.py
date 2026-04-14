@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 """api-docs-generator-ai-mcp - Generate OpenAPI specs from descriptions."""
+
+import sys, os
+sys.path.insert(0, os.path.expanduser('~/clawd/meok-labs-engine/shared'))
+from auth_middleware import check_access
+
 import json
 import time
 from typing import Optional
@@ -27,8 +32,12 @@ def _check_rate() -> bool:
 @mcp.tool()
 def generate_endpoint(
     path: str, method: str, summary: str, request_body: Optional[str] = None, response_description: str = "Successful response"
-) -> dict:
+, api_key: str = "") -> dict:
     """Generate an OpenAPI endpoint definition from a description."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
     method = method.lower()
@@ -72,8 +81,12 @@ def generate_endpoint(
 
 
 @mcp.tool()
-def generate_schema(name: str, fields: str) -> dict:
+def generate_schema(name: str, fields: str, api_key: str = "") -> dict:
     """Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array)."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
     properties = {}
@@ -96,8 +109,12 @@ def generate_schema(name: str, fields: str) -> dict:
 @mcp.tool()
 def generate_full_spec(
     title: str, description: str, version: str = "1.0.0", endpoints_json: str = "[]"
-) -> dict:
+, api_key: str = "") -> dict:
     """Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
     try:
@@ -126,8 +143,12 @@ def generate_full_spec(
 
 
 @mcp.tool()
-def add_auth_to_spec(spec_json: str, auth_type: str = "bearer") -> dict:
+def add_auth_to_spec(spec_json: str, auth_type: str = "bearer", api_key: str = "") -> dict:
     """Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
     try:
@@ -153,8 +174,12 @@ def add_auth_to_spec(spec_json: str, auth_type: str = "bearer") -> dict:
 
 
 @mcp.tool()
-def validate_spec(spec_json: str) -> dict:
+def validate_spec(spec_json: str, api_key: str = "") -> dict:
     """Validate an OpenAPI spec for common issues."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
     try:

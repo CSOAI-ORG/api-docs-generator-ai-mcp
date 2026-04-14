@@ -1,20 +1,114 @@
 {
   "name": "api-docs-generator-ai-mcp",
-  "description": "MEOK AI Labs \u2014 api-docs-generator-ai-mcp \u2014 Generate API documentation from code.",
-  "vendor": "MEOK AI Labs",
-  "homepage": "https://meok.ai",
-  "repository": "https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp",
-  "runtime": "python",
-  "entrypoint": "server.py",
+  "description": "api-docs-generator-ai-mcp \u2014 Generate API documentation from code.",
+  "version": "1.0.0",
   "tools": [
-    "run"
-  ],
-  "categories": [
-    "Documentation",
-    "Developer Tools"
-  ],
-  "pricing": {
-    "free": "50 calls/day",
-    "pro": "$9/mo"
-  }
+    {
+      "name": "generate_endpoint",
+      "description": "Generate an OpenAPI endpoint definition from a description.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "request_body": {
+            "type": "string",
+            "nullable": true
+          },
+          "response_description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "path",
+          "method",
+          "summary"
+        ]
+      }
+    },
+    {
+      "name": "generate_schema",
+      "description": "Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "fields": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "fields"
+        ]
+      }
+    },
+    {
+      "name": "generate_full_spec",
+      "description": "Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "endpoints_json": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "description"
+        ]
+      }
+    },
+    {
+      "name": "add_auth_to_spec",
+      "description": "Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "spec_json": {
+            "type": "string"
+          },
+          "auth_type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spec_json"
+        ]
+      }
+    },
+    {
+      "name": "validate_spec",
+      "description": "Validate an OpenAPI spec for common issues.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "spec_json": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "spec_json"
+        ]
+      }
+    }
+  ]
 }
