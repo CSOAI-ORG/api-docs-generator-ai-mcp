@@ -1,5 +1,6 @@
 name: api-docs-generator-ai-mcp
-description: "api-docs-generator-ai-mcp \u2014 Generate API documentation from code."
+description: Generate OpenAPI/Swagger specifications from natural language API descriptions.
+  Supports REST endpoi
 version: 1.0.0
 tools:
 - name: generate_endpoint

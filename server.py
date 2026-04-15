@@ -11,7 +11,7 @@ from typing import Optional
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP(
-    "api-docs-generator-ai-mcp",
+    "api-docs-generator-ai",
     instructions="Generate OpenAPI/Swagger specifications from natural language API descriptions. Supports REST endpoint generation, schema creation, and full spec assembly.",
 )
 
