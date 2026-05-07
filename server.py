@@ -33,7 +33,22 @@ def _check_rate() -> bool:
 def generate_endpoint(
     path: str, method: str, summary: str, request_body: Optional[str] = None, response_description: str = "Successful response"
 , api_key: str = "") -> dict:
-    """Generate an OpenAPI endpoint definition from a description."""
+    """Generate an OpenAPI endpoint definition from a description.
+
+    Behavior:
+        This tool generates structured output without modifying external systems.
+        Output is deterministic for identical inputs. No side effects.
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -82,7 +97,22 @@ def generate_endpoint(
 
 @mcp.tool()
 def generate_schema(name: str, fields: str, api_key: str = "") -> dict:
-    """Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array)."""
+    """Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array).
+
+    Behavior:
+        This tool generates structured output without modifying external systems.
+        Output is deterministic for identical inputs. No side effects.
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -110,7 +140,22 @@ def generate_schema(name: str, fields: str, api_key: str = "") -> dict:
 def generate_full_spec(
     title: str, description: str, version: str = "1.0.0", endpoints_json: str = "[]"
 , api_key: str = "") -> dict:
-    """Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects."""
+    """Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects.
+
+    Behavior:
+        This tool generates structured output without modifying external systems.
+        Output is deterministic for identical inputs. No side effects.
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -144,7 +189,23 @@ def generate_full_spec(
 
 @mcp.tool()
 def add_auth_to_spec(spec_json: str, auth_type: str = "bearer", api_key: str = "") -> dict:
-    """Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2."""
+    """Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2.
+
+    Behavior:
+        This tool is read-only and stateless — it produces analysis output
+        without modifying any external systems, databases, or files.
+        Safe to call repeatedly with identical inputs (idempotent).
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -175,7 +236,23 @@ def add_auth_to_spec(spec_json: str, auth_type: str = "bearer", api_key: str = "
 
 @mcp.tool()
 def validate_spec(spec_json: str, api_key: str = "") -> dict:
-    """Validate an OpenAPI spec for common issues."""
+    """Validate an OpenAPI spec for common issues.
+
+    Behavior:
+        This tool is read-only and stateless — it produces analysis output
+        without modifying any external systems, databases, or files.
+        Safe to call repeatedly with identical inputs (idempotent).
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
