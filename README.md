@@ -1,3 +1,5 @@
+[![api-docs-generator-ai-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/api-docs-generator-ai-mcp/badges/card.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/api-docs-generator-ai-mcp)
+
 <div align="center">
 
 [![GitHub stars](https://img.shields.io/github/stars/CSOAI-ORG/api-docs-generator-ai-mcp)](https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp/stargazers)
