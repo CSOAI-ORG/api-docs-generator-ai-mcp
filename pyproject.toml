@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "api-docs-generator-ai-mcp"
-version = "1.0.0"
+version = "1.0.2"
 description = "MEOK AI Labs — api-docs-generator-ai-mcp"
 license = {file = "LICENSE"}
 requires-python = ">=3.10"
