@@ -2,7 +2,6 @@
 """api-docs-generator-ai-mcp - Generate OpenAPI specs from descriptions."""
 
 import sys, os
-sys.path.insert(0, os.path.expanduser('~/clawd/meok-labs-engine/shared'))
 from auth_middleware import check_access
 
 import json
@@ -74,7 +73,7 @@ def generate_endpoint(
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": STRIPE_199}
 
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
@@ -111,6 +110,15 @@ def generate_endpoint(
         }
     params = []
     import re
+
+STRIPE_199 = "https://buy.stripe.com/00wfZjcgAeUW4c5cyQ8k90K"
+
+def _add_upgrade_tail(response, tier="free"):
+    """Append upgrade nudge to free-tier success responses."""
+    if isinstance(response, dict) and tier == "free":
+        response["_upgrade_note"] = "Pro tier: unlimited calls + priority support. Upgrade: " + STRIPE_199
+    return response
+
     for match in re.finditer(r"\{(\w+)\}", path):
         params.append({"name": match.group(1), "in": "path", "required": True, "schema": {"type": "string"}})
     if params:
@@ -158,7 +166,7 @@ def generate_schema(name: str, fields: str, api_key: str = "") -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": STRIPE_199}
 
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
@@ -223,7 +231,7 @@ def generate_full_spec(
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": STRIPE_199}
 
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
@@ -293,7 +301,7 @@ def add_auth_to_spec(spec_json: str, auth_type: str = "bearer", api_key: str = "
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": STRIPE_199}
 
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
@@ -359,7 +367,7 @@ def validate_spec(spec_json: str, api_key: str = "") -> dict:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": STRIPE_199}
 
     if not _check_rate():
         return {"error": "Rate limit exceeded (50/day)"}
