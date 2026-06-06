@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""api-docs-generator-ai-mcp - Generate OpenAPI specs from descriptions."""
+"""
+Buy Pro: https://www.csoai.org/checkout
+api-docs-generator-ai-mcp - Generate OpenAPI specs from descriptions."""
 
 import sys, os
 from auth_middleware import check_access

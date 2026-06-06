@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "api-docs-generator-ai-mcp"
-version = "1.0.4"
+version = "1.0.7"
 readme = "README.md"
 description = "MEOK AI Labs — api-docs-generator-ai-mcp"
 license = {file = "LICENSE"}
@@ -22,7 +22,7 @@ Homepage = "https://meok.ai"
 Repository = "https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp"
 [tool.hatch.build.targets.wheel]
 packages = ["."]
-only-include = ["server.py"]
+only-include = ["server.py", "auth_middleware.py"]
 
 [project.scripts]
 api_docs_generator_ai_mcp = "server:main"
