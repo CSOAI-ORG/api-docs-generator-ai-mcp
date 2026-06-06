@@ -1,0 +1,32 @@
+# Api Docs Generator Ai MCP
+
+> Generate OpenAPI/Swagger specifications from natural language API descriptions
+
+`api-docs-generator-ai-mcp` is a Model Context Protocol (MCP) server by MEOK AI Labs.
+
+## Install
+
+```bash
+pip install api-docs-generator-ai-mcp
+```
+
+Or run without installing:
+
+```bash
+uvx api-docs-generator-ai-mcp
+```
+
+## Tools
+
+- `generate_endpoint` — Generate an OpenAPI endpoint definition from a description.
+- `generate_schema` — Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array).
+- `generate_full_spec` — Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects.
+- `add_auth_to_spec` — Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2.
+- `validate_spec` — Validate an OpenAPI spec for common issues.
+
+## Links
+
+- Source: https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp
+- PyPI: https://pypi.org/project/api-docs-generator-ai-mcp/
+- MEOK AI Labs: https://meok.ai
+- Council of AI: https://councilof.ai
