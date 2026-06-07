@@ -1,0 +1,23 @@
+{
+  "acpVersion": "0.1",
+  "agent": {
+    "name": "api-docs-generator-ai-mcp",
+    "description": "Api Docs Generator Ai MCP Server by MEOK AI Labs",
+    "version": "1.0.7",
+    "provider": "MEOK AI Labs",
+    "interfaces": [
+      {
+        "type": "mcp",
+        "transport": "stdio",
+        "package": "api-docs-generator-ai-mcp"
+      }
+    ],
+    "capabilities": [
+      "generate_endpoint",
+      "generate_schema",
+      "generate_full_spec",
+      "add_auth_to_spec",
+      "validate_spec"
+    ]
+  }
+}

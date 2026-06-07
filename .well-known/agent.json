@@ -1,0 +1,68 @@
+{
+  "name": "api-docs-generator-ai-mcp",
+  "description": "Api Docs Generator Ai MCP Server by MEOK AI Labs",
+  "url": "https://proofof.ai/scorecard/api-docs-generator-ai-mcp.html",
+  "version": "1.0.7",
+  "protocolVersion": "0.2.0",
+  "provider": {
+    "organization": "MEOK AI Labs",
+    "url": "https://meok.ai"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text"
+  ],
+  "defaultOutputModes": [
+    "text"
+  ],
+  "skills": [
+    {
+      "id": "generate_endpoint",
+      "name": "Generate Endpoint",
+      "description": "generate_endpoint via api-docs-generator-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "generate_schema",
+      "name": "Generate Schema",
+      "description": "generate_schema via api-docs-generator-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "generate_full_spec",
+      "name": "Generate Full Spec",
+      "description": "generate_full_spec via api-docs-generator-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "add_auth_to_spec",
+      "name": "Add Auth To Spec",
+      "description": "add_auth_to_spec via api-docs-generator-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    },
+    {
+      "id": "validate_spec",
+      "name": "Validate Spec",
+      "description": "validate_spec via api-docs-generator-ai-mcp",
+      "tags": [
+        "mcp",
+        "compliance"
+      ]
+    }
+  ]
+}
