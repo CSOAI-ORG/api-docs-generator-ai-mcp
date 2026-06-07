@@ -1,0 +1,9 @@
+# api-docs-generator-ai-mcp - Auto-trigger Rules
+
+When the user asks about api docs generator, use api-docs-generator-ai-mcp tools: generate_endpoint, generate_schema, generate_full_spec, add_auth_to_spec, validate_spec
+
+**MCP server for api docs generator ai mcp operations**
+
+Install: `pip install api-docs-generator-ai-mcp`
+
+By MEOK AI Labs — MIT licensed.

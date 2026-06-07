@@ -1,0 +1,28 @@
+{
+  "name": "api-docs-generator-ai-mcp",
+  "title": "Api Docs Generator Ai Mcp",
+  "description": "MEOK AI Labs \u2014 api-docs-generator-ai-mcp",
+  "version": "1.0.7",
+  "homepage": "https://meok.ai",
+  "license": "MIT",
+  "transport": {
+    "type": "stdio"
+  },
+  "tools": [
+    {
+      "name": "generate_endpoint"
+    },
+    {
+      "name": "generate_schema"
+    },
+    {
+      "name": "generate_full_spec"
+    },
+    {
+      "name": "add_auth_to_spec"
+    },
+    {
+      "name": "validate_spec"
+    }
+  ]
+}

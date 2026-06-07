@@ -1,32 +1,36 @@
-# Api Docs Generator Ai MCP
-
-> Generate OpenAPI/Swagger specifications from natural language API descriptions
-
-`api-docs-generator-ai-mcp` is a Model Context Protocol (MCP) server by MEOK AI Labs.
+# api-docs-generator-ai-mcp
+# **MCP server for api docs generator ai mcp operations**
 
 ## Install
-
 ```bash
 pip install api-docs-generator-ai-mcp
 ```
 
-Or run without installing:
-
-```bash
-uvx api-docs-generator-ai-mcp
-```
+## Auth & Rate Limits
+- Free tier: 10 calls/day. No API key required.
+- Pro tier (£79/mo): unlimited + signed attestations.
+- Enterprise (£1,499/mo): white-label.
 
 ## Tools
 
-- `generate_endpoint` — Generate an OpenAPI endpoint definition from a description.
-- `generate_schema` — Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array).
-- `generate_full_spec` — Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects.
-- `add_auth_to_spec` — Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2.
-- `validate_spec` — Validate an OpenAPI spec for common issues.
+### `generate_endpoint`
+Generate an OpenAPI endpoint definition from a description.
 
-## Links
+### `generate_schema`
+Generate an OpenAPI schema component. Fields format: 'name:type,name2:type2' (types: string,integer,number,boolean,array).
 
-- Source: https://github.com/CSOAI-ORG/api-docs-generator-ai-mcp
-- PyPI: https://pypi.org/project/api-docs-generator-ai-mcp/
-- MEOK AI Labs: https://meok.ai
-- Council of AI: https://councilof.ai
+### `generate_full_spec`
+Generate a complete OpenAPI 3.0 spec. Pass endpoints_json as a JSON array of {path, method, summary} objects.
+
+### `add_auth_to_spec`
+Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2.
+
+### `validate_spec`
+Validate an OpenAPI spec for common issues.
+
+
+## Maintainer
+MEOK AI Labs · hello@meok.ai · https://meok.ai · MIT licensed
+
+## Pairs with
+Governance moat: pair this tool with any of MEOK's 38 governance MCPs (EU AI Act, DORA, NIS2, CRA, GDPR, ISO 42001, etc.) for full compliance coverage.

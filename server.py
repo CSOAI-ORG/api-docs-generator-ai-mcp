@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """
-Buy Pro: https://www.csoai.org/checkout
 api-docs-generator-ai-mcp - Generate OpenAPI specs from descriptions."""
 
 import sys, os
