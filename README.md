@@ -1,4 +1,4 @@
-<!-- mcp-name: CSOAI-ORG/api-docs-generator-ai-mcp -->
+<!-- mcp-name: io.github.CSOAI-ORG/api-docs-generator-ai-mcp -->
 [![MCP Scorecard: 74/100](https://img.shields.io/badge/proofof.ai-74%2F100-5b21b6)](https://proofof.ai/scorecard/api-docs-generator-ai-mcp.html)
 
 # Api Docs Generator Ai MCP
@@ -98,3 +98,28 @@ buyers can deploy without vendor-lock-in objections.
 
 <!-- BUY-LADDER:END -->
 
+
+
+## Configuration
+
+Add to your `claude_desktop_config.json` (Claude Desktop) or your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "api-docs-generator-ai-mcp": {
+      "command": "uvx",
+      "args": ["api-docs-generator-ai-mcp"]
+    }
+  }
+}
+```
+
+Or: `pip install api-docs-generator-ai-mcp` then run the `api-docs-generator-ai-mcp` command (stdio transport).
+
+## Examples
+
+Once configured, ask your assistant, for example:
+- "Use `generate_endpoint` to …"
+- "Use `generate_schema` to …"
+- "Use `generate_full_spec` to …"
