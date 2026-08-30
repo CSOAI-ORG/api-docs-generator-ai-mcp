@@ -6,6 +6,7 @@ import sys, os
 from auth_middleware import check_access
 
 import json
+import re
 import time
 from typing import Optional
 from mcp.server.fastmcp import FastMCP
@@ -20,6 +21,13 @@ mcp = FastMCP(
 # Rate limiting
 _calls: list[float] = []
 DAILY_LIMIT = 50
+
+
+def _path_parameters(path: str) -> list[dict]:
+    return [
+        {"name": match.group(1), "in": "path", "required": True, "schema": {"type": "string"}}
+        for match in re.finditer(r"\{(\w+)\}", path)
+    ]
 
 
 def _check_rate() -> bool:
@@ -88,7 +96,7 @@ def generate_endpoint(
           included in responses (X-RateLimit-Remaining, X-RateLimit-Reset).
         - Error Handling: Returns structured error objects with 'error' key on failure.
           Never raises unhandled exceptions. Invalid inputs return descriptive validation errors.
-        - Idempotency: Fully idempotent — calling with the same inputs always produces the
+        - Idempotency: Fully idempotent - calling with the same inputs always produces the
           same output. Safe to retry on timeout or transient failure.
         - Data Privacy: No input data is stored, logged, or transmitted to external services.
           All processing happens locally within the MCP server process.
@@ -130,8 +138,10 @@ def generate_endpoint(
                 }
             },
         }
-    params = []
-    import re
+    params = _path_parameters(path)
+    if params:
+        endpoint["parameters"] = params
+    return {"path": path, "method": method, "definition": endpoint}
 
 STRIPE_199 = "https://buy.stripe.com/aFa7sNcgAdQS0ZT1Uc8k91t"
 
@@ -140,12 +150,6 @@ def _add_upgrade_tail(response, tier="free"):
     if isinstance(response, dict) and tier == "free":
         response["_upgrade_note"] = "Pro tier: unlimited calls + priority support. Upgrade: " + STRIPE_199
     return response
-
-    for match in re.finditer(r"\{(\w+)\}", path):
-        params.append({"name": match.group(1), "in": "path", "required": True, "schema": {"type": "string"}})
-    if params:
-        endpoint["parameters"] = params
-    return {"path": path, "method": method, "definition": endpoint}
 
 
 @mcp.tool()
@@ -181,7 +185,7 @@ def generate_schema(name: str, fields: str, api_key: str = "") -> dict:
           included in responses (X-RateLimit-Remaining, X-RateLimit-Reset).
         - Error Handling: Returns structured error objects with 'error' key on failure.
           Never raises unhandled exceptions. Invalid inputs return descriptive validation errors.
-        - Idempotency: Fully idempotent — calling with the same inputs always produces the
+        - Idempotency: Fully idempotent - calling with the same inputs always produces the
           same output. Safe to retry on timeout or transient failure.
         - Data Privacy: No input data is stored, logged, or transmitted to external services.
           All processing happens locally within the MCP server process.
@@ -246,7 +250,7 @@ def generate_full_spec(
           included in responses (X-RateLimit-Remaining, X-RateLimit-Reset).
         - Error Handling: Returns structured error objects with 'error' key on failure.
           Never raises unhandled exceptions. Invalid inputs return descriptive validation errors.
-        - Idempotency: Fully idempotent — calling with the same inputs always produces the
+        - Idempotency: Fully idempotent - calling with the same inputs always produces the
           same output. Safe to retry on timeout or transient failure.
         - Data Privacy: No input data is stored, logged, or transmitted to external services.
           All processing happens locally within the MCP server process.
@@ -268,11 +272,15 @@ def generate_full_spec(
         s = ep.get("summary", "")
         if p not in paths:
             paths[p] = {}
-        paths[p][m] = {
+        operation = {
             "summary": s,
             "operationId": p.strip("/").replace("/", "_") + f"_{m}",
             "responses": {"200": {"description": "Success", "content": {"application/json": {"schema": {"type": "object"}}}}},
         }
+        params = _path_parameters(p)
+        if params:
+            operation["parameters"] = params
+        paths[p][m] = operation
     spec = {
         "openapi": "3.0.3",
         "info": {"title": title, "description": description, "version": version},
@@ -287,7 +295,7 @@ def add_auth_to_spec(spec_json: str, auth_type: str = "bearer", api_key: str = "
     """Add authentication scheme to an OpenAPI spec. auth_type: bearer, api_key, basic, oauth2.
 
     Behavior:
-        This tool is read-only and stateless — it produces analysis output
+        This tool is read-only and stateless - it produces analysis output
         without modifying any external systems, databases, or files.
         Safe to call repeatedly with identical inputs (idempotent).
         Free tier: 10/day rate limit. Pro tier: unlimited.
@@ -316,7 +324,7 @@ def add_auth_to_spec(spec_json: str, auth_type: str = "bearer", api_key: str = "
           included in responses (X-RateLimit-Remaining, X-RateLimit-Reset).
         - Error Handling: Returns structured error objects with 'error' key on failure.
           Never raises unhandled exceptions. Invalid inputs return descriptive validation errors.
-        - Idempotency: Fully idempotent — calling with the same inputs always produces the
+        - Idempotency: Fully idempotent - calling with the same inputs always produces the
           same output. Safe to retry on timeout or transient failure.
         - Data Privacy: No input data is stored, logged, or transmitted to external services.
           All processing happens locally within the MCP server process.
@@ -354,7 +362,7 @@ def validate_spec(spec_json: str, api_key: str = "") -> dict:
     """Validate an OpenAPI spec for common issues.
 
     Behavior:
-        This tool is read-only and stateless — it produces analysis output
+        This tool is read-only and stateless - it produces analysis output
         without modifying any external systems, databases, or files.
         Safe to call repeatedly with identical inputs (idempotent).
         Free tier: 10/day rate limit. Pro tier: unlimited.
@@ -382,7 +390,7 @@ def validate_spec(spec_json: str, api_key: str = "") -> dict:
           included in responses (X-RateLimit-Remaining, X-RateLimit-Reset).
         - Error Handling: Returns structured error objects with 'error' key on failure.
           Never raises unhandled exceptions. Invalid inputs return descriptive validation errors.
-        - Idempotency: Fully idempotent — calling with the same inputs always produces the
+        - Idempotency: Fully idempotent - calling with the same inputs always produces the
           same output. Safe to retry on timeout or transient failure.
         - Data Privacy: No input data is stored, logged, or transmitted to external services.
           All processing happens locally within the MCP server process.

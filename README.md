@@ -42,11 +42,11 @@ npx -y @smithery/cli@latest install api-docs-generator-ai-mcp --client claude
 
 This MCP server is built with **EU AI Act compliance** built-in:
 
-- ✅ Article 9 — Risk Management System
-- ✅ Article 13 — Transparency & Instructions for Use
-- ✅ Article 15 — Bias Detection & Testing
-- ✅ Article 26 — FRIA Support (where applicable)
-- ✅ Article 50 — AI Content Watermarking (where applicable)
+- ✅ Article 9 - Risk Management System
+- ✅ Article 13 - Transparency & Instructions for Use
+- ✅ Article 15 - Bias Detection & Testing
+- ✅ Article 26 - FRIA Support (where applicable)
+- ✅ Article 50 - AI Content Watermarking (where applicable)
 
 Need help getting compliant? **[Book a free 15-min diagnostic →](https://cal.com/csoai/august-audit)**
 
@@ -54,14 +54,14 @@ Need help getting compliant? **[Book a free 15-min diagnostic →](https://cal.c
 
 Need custom development, SLA guarantees, or white-label deployment?
 
-- **Pro:** $99/mo — Full MCP suite + EU AI Act tracking
-- **Enterprise:** $499/mo — Custom dev + SLA + Dedicated support
+- **Pro:** $99/mo - Full MCP suite + EU AI Act tracking
+- **Enterprise:** $499/mo - Custom dev + SLA + Dedicated support
 
 [View Pricing →](https://councilof.ai/pricing) | [Contact Sales →](mailto:sales@csoai.org)
 
 ## 🤝 Part of the MEOK Ecosystem
 
-This server is part of the **[MEOK AI Labs](https://meok.ai)** ecosystem — 300+ MCP servers for sovereign AI governance.
+This server is part of the **[MEOK AI Labs](https://meok.ai)** ecosystem - 300+ MCP servers for sovereign AI governance.
 
 | Domain | Purpose |
 |--------|---------|
@@ -85,7 +85,7 @@ buyers can deploy without vendor-lock-in objections.
 
 <!-- BUY-LADDER:START -->
 
-## 💸 Try MEOK in 30 seconds — instant buy ladder
+## 💸 Try MEOK in 30 seconds - instant buy ladder
 
 | Tier | Price | What you get | Stripe |
 |---|---|---|---|
@@ -93,7 +93,7 @@ buyers can deploy without vendor-lock-in objections.
 | Quick Kit | **£9** | EU AI Act Article 50 implementation guide (C2PA + EU-Icon) | <https://buy.stripe.com/aFa7sNcgAdQS0ZT1Uc8k91t> |
 | Founder Call | **£29** | 30-min 1-on-1 with the founder | <https://buy.stripe.com/aFa7sNcgAdQS0ZT1Uc8k91t> |
 
-> Refundable. UK Stripe — VAT-clean. Builds on the 81-MCP MEOK fleet.
+> Refundable. UK Stripe - VAT-clean. Builds on the 81-MCP MEOK fleet.
 > Verify any signed report at <https://meok.ai/verify>.
 
 <!-- BUY-LADDER:END -->
@@ -123,3 +123,10 @@ Once configured, ask your assistant, for example:
 - "Use `generate_endpoint` to …"
 - "Use `generate_schema` to …"
 - "Use `generate_full_spec` to …"
+
+The test suite includes an [Xquik workflow](tests/test_xquik_openapi_workflow.py)
+that generates and validates an authenticated OpenAPI specification with path
+parameters. See the [Xquik API documentation](https://docs.xquik.com/api-reference/overview)
+and [source repository](https://github.com/Xquik-dev/x-twitter-scraper).
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
